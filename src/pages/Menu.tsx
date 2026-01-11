@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { menuApi, type MenuContent, type CategoryContent } from '../api/client';
+import { menuApi, type MenuContent } from '../api/client';
 import MenuEditor from '../components/MenuEditor';
 
 export default function Menu() {
