@@ -62,51 +62,51 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Dashboard</h1>
 
       {/* Tarjetas de estadísticas */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Videos</p>
-              <p className="text-3xl font-bold mt-2">{stats.videosCount}</p>
+              <p className="text-gray-600 text-xs md:text-sm font-medium">Videos</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2">{stats.videosCount}</p>
             </div>
-            <div className="text-4xl">🎬</div>
+            <div className="text-3xl md:text-4xl">🎬</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Categorías</p>
-              <p className="text-3xl font-bold mt-2">{stats.categoriesCount}</p>
+              <p className="text-gray-600 text-xs md:text-sm font-medium">Categorías</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2">{stats.categoriesCount}</p>
             </div>
-            <div className="text-4xl">📋</div>
+            <div className="text-3xl md:text-4xl">📋</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Items del Menú</p>
-              <p className="text-3xl font-bold mt-2">{stats.itemsCount}</p>
+              <p className="text-gray-600 text-xs md:text-sm font-medium">Items del Menú</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2">{stats.itemsCount}</p>
             </div>
-            <div className="text-4xl">📝</div>
+            <div className="text-3xl md:text-4xl">📝</div>
           </div>
         </div>
       </div>
 
       {/* Botón de sincronización */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4">Sincronización</h2>
-        <p className="text-gray-600 mb-4">
+      <div className="bg-white rounded-lg shadow p-4 md:p-6">
+        <h2 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Sincronización</h2>
+        <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
           Sincroniza los cambios con la app móvil vía WebSocket.
         </p>
         <button
           onClick={handleSync}
           disabled={syncing}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full md:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm md:text-base"
         >
           {syncing ? 'Sincronizando...' : 'Sincronizar Ahora'}
         </button>

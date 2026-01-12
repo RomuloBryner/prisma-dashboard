@@ -125,15 +125,15 @@ export default function Devices() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Dispositivos</h1>
-        <div className="flex items-center gap-4">
-          <div className="text-sm text-gray-600">
-            Actualización automática cada {REFRESH_INTERVAL / 1000}s
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold">Dispositivos</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="text-xs md:text-sm text-gray-600">
+            Actualización cada {REFRESH_INTERVAL / 1000}s
           </div>
           <button
             onClick={loadDevices}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm md:text-base"
           >
             🔄 Actualizar
           </button>
@@ -147,102 +147,102 @@ export default function Devices() {
       )}
 
       {/* Estadísticas generales */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Total</p>
-              <p className="text-3xl font-bold mt-2">{devices.length}</p>
+              <p className="text-gray-600 text-xs md:text-sm font-medium">Total</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2">{devices.length}</p>
             </div>
-            <div className="text-4xl">📱</div>
+            <div className="text-2xl md:text-4xl">📱</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">En Línea</p>
-              <p className="text-3xl font-bold mt-2 text-green-600">
+              <p className="text-gray-600 text-xs md:text-sm font-medium">En Línea</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2 text-green-600">
                 {devices.filter((d) => d.is_online).length}
               </p>
             </div>
-            <div className="text-4xl">✅</div>
+            <div className="text-2xl md:text-4xl">✅</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Offline</p>
-              <p className="text-3xl font-bold mt-2 text-red-600">
+              <p className="text-gray-600 text-xs md:text-sm font-medium">Offline</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2 text-red-600">
                 {devices.filter((d) => !d.is_online).length}
               </p>
             </div>
-            <div className="text-4xl">🔴</div>
+            <div className="text-2xl md:text-4xl">🔴</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-4 md:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Con Errores</p>
-              <p className="text-3xl font-bold mt-2 text-orange-600">
+              <p className="text-gray-600 text-xs md:text-sm font-medium">Errores</p>
+              <p className="text-2xl md:text-3xl font-bold mt-1 md:mt-2 text-orange-600">
                 {devices.filter((d) => d.errors && d.errors.length > 0).length}
               </p>
             </div>
-            <div className="text-4xl">⚠️</div>
+            <div className="text-2xl md:text-4xl">⚠️</div>
           </div>
         </div>
       </div>
 
       {/* Lista de dispositivos */}
       {devices.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-8 text-center">
-          <div className="text-6xl mb-4">📱</div>
-          <h3 className="text-xl font-semibold mb-2">No hay dispositivos conectados</h3>
-          <p className="text-gray-600">
+        <div className="bg-white rounded-lg shadow p-6 md:p-8 text-center">
+          <div className="text-4xl md:text-6xl mb-3 md:mb-4">📱</div>
+          <h3 className="text-lg md:text-xl font-semibold mb-2">No hay dispositivos conectados</h3>
+          <p className="text-sm md:text-base text-gray-600">
             Los dispositivos aparecerán aquí cuando empiecen a enviar heartbeats.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {devices.map((device) => (
             <div
               key={device.device_id}
               className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
             >
               {/* Header */}
-              <div className="border-b border-gray-200 px-6 py-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{getScreenTypeIcon(device.screen_type)}</span>
-                    <div>
-                      <h3 className="text-lg font-semibold">{device.device_id}</h3>
-                      <p className="text-sm text-gray-600 capitalize">
+              <div className="border-b border-gray-200 px-4 md:px-6 py-3 md:py-4">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+                    <span className="text-2xl md:text-3xl flex-shrink-0">{getScreenTypeIcon(device.screen_type)}</span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-sm md:text-lg font-semibold truncate">{device.device_id}</h3>
+                      <p className="text-xs md:text-sm text-gray-600 capitalize">
                         Pantalla {device.screen_type}
                       </p>
                     </div>
                   </div>
                   <div
-                    className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(
+                    className={`px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium border ${getStatusColor(
                       device.status
-                    )}`}
+                    )} whitespace-nowrap`}
                   >
-                    {getStatusIcon(device.status)} {device.status.toUpperCase()}
+                    {getStatusIcon(device.status)} <span className="hidden sm:inline">{device.status.toUpperCase()}</span>
                   </div>
                 </div>
               </div>
 
               {/* Contenido */}
-              <div className="px-6 py-4 space-y-3">
+              <div className="px-4 md:px-6 py-3 md:py-4 space-y-2 md:space-y-3">
                 {/* Video actual */}
                 {device.current_video_name && (
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">🎬 Video Actual:</p>
-                    <p className="font-medium">{device.current_video_name}</p>
+                    <p className="text-xs md:text-sm text-gray-600 mb-1">🎬 Video Actual:</p>
+                    <p className="text-sm md:text-base font-medium truncate">{device.current_video_name}</p>
                     {device.playlist_index !== undefined &&
                       device.total_videos !== undefined && (
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs md:text-sm text-gray-500">
                           Video {device.playlist_index + 1} de {device.total_videos}
                         </p>
                       )}
@@ -250,7 +250,7 @@ export default function Devices() {
                 )}
 
                 {/* Última actualización */}
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-xs md:text-sm flex-wrap gap-1">
                   <span className="text-gray-600">⏱️ Última actualización:</span>
                   <span className="font-medium">
                     {formatTimestamp(device.last_heartbeat)}
@@ -259,7 +259,7 @@ export default function Devices() {
 
                 {/* Uptime */}
                 {device.uptime !== undefined && (
-                  <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center justify-between text-xs md:text-sm">
                     <span className="text-gray-600">⏰ Tiempo activo:</span>
                     <span className="font-medium">{formatUptime(device.uptime)}</span>
                   </div>
@@ -267,7 +267,7 @@ export default function Devices() {
 
                 {/* Versión de la app */}
                 {device.app_version && (
-                  <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center justify-between text-xs md:text-sm">
                     <span className="text-gray-600">📦 Versión:</span>
                     <span className="font-medium">{device.app_version}</span>
                   </div>
@@ -275,11 +275,11 @@ export default function Devices() {
 
                 {/* Errores */}
                 {device.errors && device.errors.length > 0 && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-3">
-                    <p className="text-sm font-medium text-red-800 mb-2">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-2 md:p-3 mt-2 md:mt-3">
+                    <p className="text-xs md:text-sm font-medium text-red-800 mb-1 md:mb-2">
                       ⚠️ Errores ({device.errors.length}):
                     </p>
-                    <ul className="text-sm text-red-700 space-y-1">
+                    <ul className="text-xs md:text-sm text-red-700 space-y-1">
                       {device.errors.slice(0, 3).map((error, idx) => (
                         <li key={idx} className="truncate">
                           • {error}

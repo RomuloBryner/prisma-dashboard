@@ -88,13 +88,13 @@ export default function Videos() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Gestión de Videos</h1>
-        <div className="flex space-x-3">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold">Gestión de Videos</h1>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <button
             onClick={handleSync}
             disabled={syncing}
-            className={`px-6 py-3 rounded-lg transition-colors flex items-center space-x-2 ${
+            className={`px-4 md:px-6 py-3 rounded-lg transition-colors flex items-center justify-center space-x-2 text-sm md:text-base ${
               syncing 
                 ? 'bg-gray-400 cursor-not-allowed text-white' 
                 : 'bg-green-600 hover:bg-green-700 text-white'
@@ -102,7 +102,7 @@ export default function Videos() {
           >
             {syncing ? (
               <>
-                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin h-4 w-4 md:h-5 md:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
@@ -110,10 +110,11 @@ export default function Videos() {
               </>
             ) : (
               <>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
                 </svg>
-                <span>Sincronizar Dispositivos</span>
+                <span className="hidden sm:inline">Sincronizar Dispositivos</span>
+                <span className="sm:hidden">Sincronizar</span>
               </>
             )}
           </button>
@@ -122,7 +123,7 @@ export default function Videos() {
               setEditingVideo(null);
               setShowUploader(true);
             }}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 md:px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm md:text-base"
           >
             + Agregar Video
           </button>
@@ -130,7 +131,7 @@ export default function Videos() {
       </div>
 
       {showUploader && (
-        <div className="mb-6">
+        <div className="mb-4 md:mb-6">
           <VideoUploader
             onSuccess={handleUploadSuccess}
             onCancel={() => setShowUploader(false)}
