@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { videosApi, syncApi, type VideoMetadata, type VideoCreate } from '../api/client';
+import { videosApi, syncApi, type VideoMetadata } from '../api/client';
 import VideoManager from '../components/VideoManager';
 import VideoUploader from '../components/VideoUploader';
 
@@ -32,18 +32,6 @@ export default function Videos() {
     setVideos([...videos, newVideo]);
     setShowUploader(false);
     alert('Video subido exitosamente');
-  };
-
-  const handleCreate = async (videoData: VideoCreate) => {
-    try {
-      const newVideo = await videosApi.create(videoData);
-      setVideos([...videos, newVideo]);
-      setShowUploader(false);
-      alert('Video creado exitosamente');
-    } catch (error) {
-      console.error('Error creando video:', error);
-      alert('Error al crear video');
-    }
   };
 
   const handleUpdate = async (id: string, updates: Partial<VideoMetadata>) => {
