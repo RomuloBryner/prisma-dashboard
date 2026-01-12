@@ -26,6 +26,14 @@ export default function Videos() {
     }
   };
 
+  const handleUploadSuccess = (newVideo: VideoMetadata) => {
+    // El video ya fue creado en el backend por confirmVideo
+    // Solo actualizamos la lista local
+    setVideos([...videos, newVideo]);
+    setShowUploader(false);
+    alert('Video subido exitosamente');
+  };
+
   const handleCreate = async (videoData: VideoCreate) => {
     try {
       const newVideo = await videosApi.create(videoData);
@@ -136,7 +144,7 @@ export default function Videos() {
       {showUploader && (
         <div className="mb-6">
           <VideoUploader
-            onSubmit={handleCreate}
+            onSuccess={handleUploadSuccess}
             onCancel={() => setShowUploader(false)}
           />
         </div>

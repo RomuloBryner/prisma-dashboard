@@ -12,6 +12,7 @@ export default function Layout({ children }: LayoutProps) {
     { path: '/', label: 'Dashboard', icon: '📊' },
     { path: '/videos', label: 'Videos', icon: '🎬' },
     { path: '/menu', label: 'Menú', icon: '📋' },
+    { path: '/devices', label: 'Dispositivos', icon: '📱' },
     { path: '/config', label: 'Configuración', icon: '⚙️' },
   ];
 

@@ -2,8 +2,15 @@ import { useState, useRef } from 'react';
 import { videosApi, type UploadUrlRequest, type ConfirmVideoRequest } from '../api/client';
 
 interface VideoUploaderProps {
-  onSubmit: (video: { url: string; name?: string; priority?: number }) => void;
+  onSuccess: (video: VideoMetadata) => void;
   onCancel: () => void;
+}
+
+interface VideoMetadata {
+  id: string;
+  url: string;
+  name?: string;
+  priority: number;
 }
 
 type UploadState = 
@@ -15,7 +22,7 @@ type UploadState =
   | "confirmed"
   | "error";
 
-export default function VideoUploader({ onSubmit, onCancel }: VideoUploaderProps) {
+export default function VideoUploader({ onSuccess, onCancel }: VideoUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [priority, setPriority] = useState('0');
@@ -144,10 +151,11 @@ export default function VideoUploader({ onSubmit, onCancel }: VideoUploaderProps
       setUploadProgress(100);
       setUploadState("confirmed");
 
-      // Llamar al callback con la URL del video subido
-      onSubmit({
+      // Llamar al callback con el video completo (ya creado en el backend)
+      onSuccess({
+        id: confirmResponse.videoId,
         url: confirmResponse.url,
-        name: confirmResponse.status === "confirmed" ? (name.trim() || undefined) : undefined,
+        name: name.trim() || undefined,
         priority: parseInt(priority) || 0,
       });
 

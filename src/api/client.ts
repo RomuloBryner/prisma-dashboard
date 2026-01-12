@@ -4,7 +4,7 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://prisma-backend.oneorigyn.com';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -116,12 +116,18 @@ export const videosApi = {
   },
 
   getUploadUrl: async (request: UploadUrlRequest): Promise<UploadUrlResponse> => {
-    const response = await apiClient.post<UploadUrlResponse>('/api/videos/upload-url', request);
+    const response = await apiClient.post<UploadUrlResponse>(
+      '/api/videos/upload-url',
+      request
+    );
     return response.data;
   },
 
   confirmVideo: async (request: ConfirmVideoRequest): Promise<ConfirmVideoResponse> => {
-    const response = await apiClient.post<ConfirmVideoResponse>('/api/videos/confirm', request);
+    const response = await apiClient.post<ConfirmVideoResponse>(
+      '/api/videos/confirm',
+      request
+    );
     return response.data;
   },
 
