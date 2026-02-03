@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -8,9 +8,9 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Credenciales hardcodeadas
-const HARDCODED_EMAIL = 'prisma@oneorigyn.com';
-const HARDCODED_PASSWORD = 'OnePrisma2026';
+// Credenciales desde variables de entorno
+const AUTH_EMAIL = import.meta.env.VITE_AUTH_EMAIL || 'prisma@oneorigyn.com';
+const AUTH_PASSWORD = import.meta.env.VITE_AUTH_PASSWORD || '';
 const AUTH_STORAGE_KEY = '@prisma_dashboard_auth';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -21,7 +21,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const login = (email: string, password: string): boolean => {
-    if (email === HARDCODED_EMAIL && password === HARDCODED_PASSWORD) {
+    if (!AUTH_PASSWORD) {
+      console.error('VITE_AUTH_PASSWORD no está configurada en .env');
+      return false;
+    }
+    
+    if (email === AUTH_EMAIL && password === AUTH_PASSWORD) {
       setIsAuthenticated(true);
       localStorage.setItem(AUTH_STORAGE_KEY, 'true');
       return true;
