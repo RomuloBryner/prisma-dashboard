@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -10,7 +10,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Credenciales hardcodeadas
 const HARDCODED_EMAIL = 'prisma@oneorigyn.com';
-const HARDCODED_PASSWORD = 'Bryner1522';
+const HARDCODED_PASSWORD = 'OnePrisma2026';
 const AUTH_STORAGE_KEY = '@prisma_dashboard_auth';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
